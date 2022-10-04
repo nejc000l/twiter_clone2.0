@@ -10,7 +10,6 @@ interface Props {
 }
 function Feed({ tweets:tweetsProp }: Props) {
   const [tweets,setTweets ] = useState<Tweet[]>(tweetsProp)
-  console.log(tweets);
 
   const handleRefresh = async ()=>{
     const refreshToast = toast.loading('refreshing')
@@ -22,13 +21,14 @@ function Feed({ tweets:tweetsProp }: Props) {
   
   }
   return (
-    <div className="col-span-7 lg:col max-h-screen overflow-scroll scrollbar-hide lg:col-span-5 border-x">
+<div className="col-span-7 lg:col max-h-screen overflow-scroll scrollbar-hide lg:col-span-5 border-x">
       <div className="flex items-center justify-between ">
         <h1 className="p-5 pb-0 text-xl font-bold ">Home</h1>
         <ArrowPathIcon onClick={handleRefresh} className=" h-8 w-8 mr-5 mt-5 cursor-pointer text-twitter transition-all duration-500 ease-out hover:rotate-180 active:scale-125" />
       </div>
       <div>
         <TweetBox setTweets= {setTweets} />
+      
       </div>
       <div>
         {tweets.map((tweet) => (

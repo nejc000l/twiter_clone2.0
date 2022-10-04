@@ -1,3 +1,8 @@
+export interface Likes extends Likes{
+    _id:string
+    _type:'like'
+    
+}
 export interface Tweet extends TweetBody{
     _id: string
     _createdAt: string;

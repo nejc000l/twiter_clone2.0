@@ -37,7 +37,6 @@ function Tweet({ tweet }: Props) {
       method: 'POST',
     })
 
-    console.log('WOOHOO we made it', result)
     toast.success('Comment Posted!', {
       id: commentToast,
     })
@@ -53,7 +52,6 @@ function Tweet({ tweet }: Props) {
   useEffect(() => {
     refreshComments();
   }, []);
-  console.log(comments);
 
   return (
     <div className="flex flex-col space-x-3 border-y border-gray-100 p-5">
@@ -94,7 +92,7 @@ function Tweet({ tweet }: Props) {
           <ArrowsUpDownIcon className="h-5 w-5" />
         </div>
         <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
-          <HeartIcon className="h-5 w-5" />
+          <HeartIcon  className="h-5 w-5" ></HeartIcon>
         </div>
         <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
           <ArrowUpTrayIcon className="h-5 w-5" />

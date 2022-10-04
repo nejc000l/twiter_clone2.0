@@ -7,6 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 // We import object and document schemas
 import comment from './comment'
 import tweet from './tweet'
+import like from './like'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -19,6 +20,7 @@ export default createSchema({
     // in the studio.
     tweet,
     comment,
+    like
 
   ]),
 })
