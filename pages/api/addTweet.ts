@@ -22,6 +22,7 @@ const mutations = {
                 blockTweet: false,
                 profileImg: data.profileImg,
                 image: data.image,
+                like:data.like,
             }
         }
     ],

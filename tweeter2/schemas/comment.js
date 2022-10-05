@@ -20,6 +20,11 @@ export default {
       to:{
         type:'tweet',
       }
+    },
+    { 
+      name:'like',
+      title:'Like',
+      type:'number'
     }
     
   ],

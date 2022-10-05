@@ -19,6 +19,10 @@ function Tweet({ tweet }: Props) {
   const [commentBoxVisible, setCommentBoxVisible] = useState<boolean>(false)
   const [input, setInput] = useState<string>('')
   const {data:session} = useSession()
+  const [tweetCount,setTweetCount] = useState(0)
+  const clickCount =()=>(
+    	setTweetCount(tweetCount+1)
+       )
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -30,6 +34,7 @@ function Tweet({ tweet }: Props) {
       tweetId: tweet._id,
       username: session?.user?.name || 'Unknown User',
       profileImg: session?.user?.image || 'https://links.papareact.com/gll',
+      like:tweet.like,
     }
 
     const result = await fetch(`/api/addComment`, {
@@ -92,7 +97,8 @@ function Tweet({ tweet }: Props) {
           <ArrowsUpDownIcon className="h-5 w-5" />
         </div>
         <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
-          <HeartIcon  className="h-5 w-5" ></HeartIcon>
+          <HeartIcon  onClick={clickCount} className="h-5 w-5" ></HeartIcon>
+          <h1 onClick={clickCount}>{tweetCount}</h1>
         </div>
         <div className="flex cursor-pointer items-center space-x-3 text-gray-400">
           <ArrowUpTrayIcon className="h-5 w-5" />

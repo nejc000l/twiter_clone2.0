@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-    body{
+    input{
         @apply dark:bg-slate-900 dark:text-white
     }
 }

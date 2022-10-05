@@ -13,16 +13,16 @@ import React,{useState,useEffect } from 'react'
 interface Props {
   tweets:Tweet[]
   handleClick:React.MouseEventHandler<HTMLDivElement>
-  data:any
 }
 
 const Home = ({tweets}:Props) => { 
   //console.log(tweets)
-  const [btnState, setBtnState] = useState(false)
+  const [btnState, setBtnState] = useState(true)
 function handleClick(){
 setBtnState(!btnState)
-
+  
 }
+
   const toggleClassCheck = btnState ? 'bg-black text-white':""
   useEffect(()=>{
     const data:any  = window.localStorage.getItem('my_background')
@@ -37,7 +37,7 @@ setBtnState(!btnState)
   return (
     <div  className={toggleClassCheck}>
 
-    <div className="  lg:max-w-10xl mx-auto max-h-auto dark:bg-slate-900 dark:text-white-200 " >
+    <div className="  lg:max-w-10xl mx-auto max-h-auto " >
       <Head> 
         <title>Tweetler</title>
         <link rel="icon" href="/favicon.ico" />
@@ -45,7 +45,7 @@ setBtnState(!btnState)
       <Toaster/>
       <main className="grid grid-cols-10 ">
         <Sidebar handleClick={handleClick} />
-        <Feed tweets={tweets} />
+        <Feed handleClick={handleClick}  tweets={tweets} />
         <Widgets />
         <NightMode/>
       </main>

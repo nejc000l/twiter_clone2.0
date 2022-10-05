@@ -1,8 +1,4 @@
-export interface Likes extends Likes{
-    _id:string
-    _type:'like'
-    
-}
+
 export interface Tweet extends TweetBody{
     _id: string
     _createdAt: string;
@@ -17,12 +13,14 @@ export type TweetBody={
     username: string
     profileImg: string
     image?: string
+    like:string
 }
 export type CommentBody= {
     comment:string
     tweetId: string
     username: string
     profileImg: string
+    like:string
 }
 export interface Comment extends CommentBody{
     _createdAt: string
@@ -33,5 +31,10 @@ export interface Comment extends CommentBody{
     tweet: {
         _ref: string
         type: 'reference'
+    },
+    like:{
+        ref:string,
+        type:'reference'
     }
+ 
 }

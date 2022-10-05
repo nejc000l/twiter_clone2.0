@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import SidebarRow from "./SidebarRow";
 import {
   BellIcon,
@@ -13,12 +13,21 @@ import {
 import { signIn, signOut, useSession } from "next-auth/react";
 type Props = {
   handleClick: React.MouseEventHandler<HTMLDivElement>;
+  
 };
-function Sidebar({ handleClick }: Props) {
+function Sidebar({ handleClick}: Props) {
   const [toggleBoxVisible, settoggleBoxVisible] = useState<boolean>(false);
 
   const { data: session } = useSession();
   const [toggle, setToggle] = useState(true);
+  useEffect(()=>{
+    const data:any = window.localStorage.getItem('my_toggle_button')
+   setToggle(JSON.parse(data)) 
+  },[])
+  useEffect(()=>{
+    window.localStorage.setItem('my_toggle_button', JSON.stringify(toggle))
+
+  },[toggle])
   const toggleClass = " transform translate-x-5";
   return (
     <div className=" col-span-2 items-center md:items-start flex flex-col">

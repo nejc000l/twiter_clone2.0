@@ -29,6 +29,11 @@ export default {
     name:'image',
     title:'Tweet image',
     type:'string',
+  },
+  {
+    name:'like',
+    title:'Like',
+    type:'number'
   }
 ]
 }

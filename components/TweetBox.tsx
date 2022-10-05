@@ -4,19 +4,21 @@ import {useSession} from 'next-auth/react'
 import {TweetBody,Tweet} from '../typings'
 import { fetchTweets } from "../utils/fetchTweets";
 import toast from "react-hot-toast";
+
 interface Props{
   setTweets:  Dispatch<SetStateAction<Tweet[]>>
+  handleClick:any
 }
-function TweetBox({setTweets}:Props) {
+function TweetBox({setTweets,handleClick}:Props) {
     const [input, setInput] = useState<string>('')
     const [image,setImage] = useState<string>('')
     const {data:session} = useSession()
+    const [like,setLike] = useState<string>('')
     const imageInputRef = useRef<HTMLInputElement>(null)
-
+    const toggleClassCheck =  handleClick ? 'bg-black text-white':""
 
     const [imageUrlBoxIsOpend,setImageUrlBoxIsOpend] = useState<boolean>(false)
     const addImageToTweet=(e: React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
-     
       e.preventDefault()
         if (!imageInputRef.current?.value) return;
 
@@ -31,6 +33,7 @@ function TweetBox({setTweets}:Props) {
         username: session?.user?.name || 'Uknown User',
         profileImg:session?.user?.image || 'https://links.papareact.com/gll',
         image:image,
+        like:like,
         
       }
       const result = await fetch(`/api/addTweet`,{
@@ -60,13 +63,12 @@ function TweetBox({setTweets}:Props) {
         className="h-14 w-14 rou nded-full object-cover mt-4"
         src={session?.user?.image || "https://links.papareact.com/gll"}
       />
-
       <div className="flex flex-1 items-center pl-2 ">
-        <form  className="flex flex-1 flex-col">
+        <form  className="flex flex-1 flex-col ">
           <input 
           value={input}
           onChange={(e)=> setInput(e.target.value)}
-            className="outline-none h-24 text-xl w-full placeholder:text-xl"
+            className='outline-none h-24 text-xl w-full placeholder:text-xl'
             placeholder="Type your message"
             type="text"
           />
