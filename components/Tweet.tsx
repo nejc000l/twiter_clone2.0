@@ -128,7 +128,8 @@ function Tweet({ tweet }: Props) {
                   <Moment
                     className="text-sm text-gray-500"
                     date={tweet._createdAt}
-                    format="DD MMM YYYY"
+                    format="DD MMM YYYY" 
+                    
                   />
                 </div>
               <p>{comment.comment}</p>
